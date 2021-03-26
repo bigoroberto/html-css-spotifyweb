@@ -39,7 +39,10 @@
   width: 100%;
   padding: 20px;
 }
-
+.nav_laterale-top{
+  height: calc(100% - 80px);
+  overflow: hidden;
+}
 .nav_laterale-top .nav-logo-mobile {
   display: none;
 }
@@ -68,22 +71,53 @@
 }
 /* /NAVBAR LATERALE LISTA HOME */
 
+/* TITOLO + CREA PLAYLIST */
+.titolo_playlist{
+  width: 100%;
+  padding: 5px 20px;
+  background-color: blue;
+  color: #fff;
+}
+.titolo_playlist h5:nth-child(2):before{
+  content: '+';
+  font-size: 40px;
+  font-weight: 700;
+  color: black;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: gray;
+  vertical-align: middle;
+  line-height: 40px;
+  text-align: center;
+  margin-right: 16px;
+}
+/* /TITOLO + CREA PLAYLIST */
+
 /* NAVBAR LATERALE CREA PLAYLIST */
 .crea_playlist{
   padding: 5px 20px;
   background-color: aquamarine;
-  overflow: hidden;
-}
-.crea_playlist ul{
+  height: calc(100vh - 445px);
   overflow-y: auto;
 }
-
-.titolo_playlist{
-  width: 100%;
-  height: 30px;
-  background-color: blue;
+.crea_playlist ul{
+  list-style: none;
+}
+.crea_playlist ul li{
+  color: #515151;
+}
+.crea_playlist ul li:hover{
+  color:#fff
 }
 /* /NAVBAR LATERALE CREA PLAYLIST */
+
+/* NAVBAR LATERALE NAV-BOTTOM */
+.nav_laterale-bottom{
+  width: 100%;
+  height: 80px;
+  background-color: brown;
+}
 /* /navbar laterale */
 
 /* contenitore del main */
@@ -210,7 +244,8 @@ footer .footer-left .titolo-brano {
 @media (max-width: 600px) {
   main .nav_laterale .nav_laterale-top .nav-logo-mobile {
     display: block;
-    padding: 5px 5px;
+    padding: 5px 10px;
+    padding-right: 13px;
   }
   main .nav_laterale .nav_laterale-top .nav-logo {
     display: none;
@@ -229,7 +264,10 @@ footer .footer-left .titolo-brano {
  .list_top ul li{
     padding: 5px 10px;
   }
-.crea_playlist{
+  
+.crea_playlist,
+.titolo_playlist{
   display: none;
-}
+  }
 /* /MEDIA  Q */
+}
