@@ -4,7 +4,9 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
-
+html {
+  min-width: 600px;
+}
 .clearfix::after {
   content: "";
   display: table;
@@ -31,16 +33,18 @@
   width: 230px;
   height: calc(100vh - 90px);
   background-color: black;
+  overflow: hidden;
 }
 
 /* NAVBAR LATERALE LOGO */
 .nav_laterale .nav_laterale-top .nav-logo,
-.nav_laterale .nav_laterale-top .nav-logo-mobile{
+.nav_laterale .nav_laterale-top .nav-logo-mobile {
   width: 100%;
   padding: 20px;
 }
-.nav_laterale-top{
+.nav_laterale-top {
   height: calc(100% - 80px);
+  min-height: 400px;
   overflow: hidden;
 }
 .nav_laterale-top .nav-logo-mobile {
@@ -57,31 +61,46 @@
   padding: 5px 20px;
 }
 
-.list_top ul li a{
+.list_top ul li a {
   text-decoration: none;
   cursor: pointer;
 }
 
-.list_top ul li a:hover{
-  color:#fff
+.list_top ul li a:hover {
+  color: #fff;
 }
 
-.list_top img{
+.list_top img {
   height: 26px;
 }
 /* /NAVBAR LATERALE LISTA HOME */
 
+/* PLAYLIST */
+.playlist {
+  height: 60%;
+  overflow: hidden;
+}
+/* /PLAYLIST */
 /* TITOLO + CREA PLAYLIST */
-.titolo_playlist{
+.titolo_playlist {
   width: 100%;
   padding: 5px 20px;
-  background-color: blue;
   color: #fff;
 }
-.titolo_playlist h5:nth-child(2):before{
-  content: '+';
-  font-size: 40px;
-  font-weight: 700;
+
+.titolo_playlist h5:nth-child(2) {
+  margin-top: 10px;
+  color: #515151;
+}
+.titolo_playlist h5:nth-child(2):hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.titolo_playlist h5:nth-child(2)::before {
+  content: "+";
+  font-size: 30px;
+  font-weight: 500;
   color: black;
   display: inline-block;
   width: 40px;
@@ -91,34 +110,94 @@
   line-height: 40px;
   text-align: center;
   margin-right: 16px;
+  cursor: pointer;
+}
+
+.titolo_playlist h5:nth-child(2):hover::before {
+  background-color: #fff;
 }
 /* /TITOLO + CREA PLAYLIST */
 
 /* NAVBAR LATERALE CREA PLAYLIST */
-.crea_playlist{
+.crea_playlist {
   padding: 5px 20px;
-  background-color: aquamarine;
-  height: calc(100vh - 445px);
+  height: 50%;
   overflow-y: auto;
 }
-.crea_playlist ul{
+.crea_playlist ul {
   list-style: none;
 }
-.crea_playlist ul li{
+.crea_playlist ul li {
   color: #515151;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 600;
 }
-.crea_playlist ul li:hover{
-  color:#fff
+.crea_playlist ul li:hover {
+  color: #fff;
 }
 /* /NAVBAR LATERALE CREA PLAYLIST */
 
 /* NAVBAR LATERALE NAV-BOTTOM */
-.nav_laterale-bottom{
+.nav_laterale-bottom {
   width: 100%;
   height: 80px;
-  background-color: brown;
+  padding: 5px 20px;
+  color: #515151;
+  font-size: 12px;
+  font-weight: 600;
 }
-/* /navbar laterale */
+
+.nav_laterale-bottom .installa_app {
+  border-bottom: 1px solid gray;
+  padding: 10px 0px;
+}
+
+.nav_laterale-bottom .installa_app i:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.nav_laterale-bottom .installa_app span:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.nav_laterale-bottom i {
+  margin-right: 5px;
+}
+
+.nav_laterale-bottom .nome_utente {
+  margin-top: 10px;
+  display: flex;
+}
+
+.nav_laterale-bottom .nome_utente .immagine_profilo {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #515151;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.nav_laterale-bottom .nome_utente .immagine_profilo img {
+  width: 100%;
+  margin-right: 10px;
+}
+
+.nav_laterale-bottom .nome_utente span {
+  line-height: 24px;
+  color: #fff;
+  font-weight: 700;
+}
+.nav_laterale-bottom .nome_utente img,
+span {
+  cursor: pointer;
+}
+/* /NAVBAR LATERALE NAV-BOTTOM */
 
 /* contenitore del main */
 
@@ -137,7 +216,6 @@
   justify-content: flex-end;
   background-color: rgba(0, 0, 0, 0.5);
 }
-
 .top-main button {
   margin-right: 20px;
   height: 50%;
@@ -149,7 +227,6 @@
   margin-top: 22px;
   cursor: pointer;
 }
-
 button:hover {
   font-size: 16px;
 }
@@ -163,10 +240,11 @@ button:hover {
   padding: 10px;
   margin-top: 90px;
 }
-
 .content .selezione_tipo ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .content .selezione_tipo ul li {
   position: relative;
@@ -193,7 +271,7 @@ button:hover {
 }
 /* /SELEZIONE */
 
-/* footer */
+/* FOOTER */
 footer {
   display: flex;
   justify-content: space-between;
@@ -204,27 +282,18 @@ footer {
 .footer-right,
 .footer-center {
   display: flex;
-  flex-shrink: 0;
 }
-footer .footer-left .icon,
-footer .footer-center .icon,
-footer .footer-right .icon {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+
+.footer-left,
+.footer-right {
+  /*  width: 230px; */
+  min-width: 170px;
+  justify-content: space-evenly;
   align-items: center;
-  color: #878787;
-  height: 100%;
-  padding: 14px 0;
-  cursor: pointer;
+  flex-direction: row;
+  flex-shrink: 1;
 }
-
-footer .footer-center .icon,
-footer .footer-right .icon {
-  margin-right: 10px;
-  color: #fff;
-}
-
+/* FOOTER LEFT */
 footer .footer-left .titolo-brano {
   display: flex;
   align-items: center;
@@ -232,14 +301,89 @@ footer .footer-left .titolo-brano {
 }
 .icon img {
   width: 75%;
-  /*   height: 100%; */
   object-fit: cover;
 }
 .min_album {
   width: 61px;
   margin: 0 5px;
 }
+/* /FOOTER LEFT */
+/* FOOTER CENTER */
+footer .footer-center {
+  width: calc(100% / 3);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 2;
+}
+footer .footer-center .contenitore_musica {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
+footer .footer-center .contenitore_musica span {
+  font-size: 10px;
+  color: #c1c1c1;
+}
+
+footer .linea_tempo {
+  width: 80%;
+  background-color: #5a5a5a;
+  border-radius: 20px;
+  height: 4px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+footer .linea_tempo .tempo_avanti {
+  width: 25%;
+  border: 2px solid #c1c1c1;
+  border-radius: 20px;
+  cursor: pointer;
+  flex-wrap: nowrap;
+}
+/* /FOOTER CENTER */
+
+/* FOOTER RIGHT */
+footer .footer-right .linea_tempo {
+  width: 84px;
+  background-color: #5a5a5a;
+  border-radius: 20px;
+  height: 4px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+footer .footer-right .linea_tempo .tempo_avanti {
+  width: 25px;
+  border: 2px solid #c1c1c1;
+  border-radius: 20px;
+  cursor: pointer;
+  flex-wrap: nowrap;
+}
+/* FOOTER RIGHT */
+
+/* FOOTER REGOLE ICON */
+footer .footer-left .icon,
+footer .footer-center .icon,
+footer .footer-right .icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #878787;
+  height: 100%;
+}
+
+footer .footer-center .icon,
+footer .footer-right .icon {
+  margin-right: 10px;
+  color: #fff;
+}
+/* FOOTER REGOLE ICON */
+/* /FOOTER */
 /* MEDIA  Q */
 @media (max-width: 600px) {
   main .nav_laterale .nav_laterale-top .nav-logo-mobile {
@@ -257,17 +401,34 @@ footer .footer-left .titolo-brano {
   main .content .top-main {
     width: calc(100% - 50px);
   }
-  main .nav_laterale .list_top a{
+  main .nav_laterale .list_top a {
     display: none;
-    
   }
- .list_top ul li{
+  .list_top ul li {
     padding: 5px 10px;
   }
-  
-.crea_playlist,
-.titolo_playlist{
-  display: none;
+
+  .crea_playlist,
+  .titolo_playlist {
+    display: none;
   }
-/* /MEDIA  Q */
+  main .nav_laterale-bottom span {
+    display: none;
+  }
+  main .nav_laterale-bottom {
+    padding: 0;
+  }
+  .nav_laterale-bottom .installa_app {
+    margin: 0px 20px;
+    border-bottom: none;
+  }
+
+  .nav_laterale-bottom .nome_utente .immagine_profilo {
+    margin-left: 14px;
+  }
+
+  footer .footer-left .icon {
+    display: flex;
+    flex-direction: column;
+  }
 }
