@@ -25,9 +25,19 @@ html {
 .margin-rg-20 {
   margin-right: 20px;
 }
+
+.margin-lt-25{
+  margin-left: 25px;
+}
 /* /MARGIN */
 
-/*  */
+/* COLOR */
+.text_grey{
+  color:#515151
+}
+/* /COLOR */
+
+
 /* NAVBAR LATERALE */
 .nav_laterale {
   width: 230px;
@@ -199,6 +209,7 @@ span {
 }
 /* /NAVBAR LATERALE NAV-BOTTOM */
 
+/* MAIN */
 /* contenitore del main */
 
 .content {
@@ -271,6 +282,74 @@ button:hover {
 }
 /* /SELEZIONE */
 
+/* RECENTLY PLAYED */
+.contenitore_musica{
+  margin-bottom: 30px;
+}
+.row:first-child{
+  margin-bottom: 150px;
+}
+
+.row:nth-child(2){
+  margin-bottom: 50px;
+}
+
+.row.rotonda{
+  margin-bottom: 50px;
+}
+.row ul{
+  display: flex;
+  list-style: none;
+  flex-wrap: ;
+}
+.row ul li{
+  width:calc(100% / 6);
+  max-width: 180px;
+  min-width: 100px;
+  padding: 10px;
+  text-align: center;
+}
+
+.row  h4{
+  margin-top: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+.row h3{
+  margin-left: 25px;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+/* .row  p{
+  margin-left: 25px;
+  color: #515151
+} */
+.row .contenitore_img p{
+  margin-top: 10px;
+  color: #515151
+}
+.contenitore_img{
+  width: 150px;
+  height: 150px;
+  margin-left: 15px;
+}
+
+.contenitore_img img{
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+.rotonda ul li img{
+  border-radius: 50%;
+}
+
+
+/* /RECENTLY PLAYED */
 /* FOOTER */
 footer {
   display: flex;
