@@ -2,512 +2,554 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
 }
-html {
-  min-width: 600px;
+
+/* MIX */
+body {
+  min-width: 500px;
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(255, 255, 255);
 }
-.clearfix::after {
-  content: "";
+
+a { 
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.4);
+}
+a:hover,
+a:active,
+a:focus { 
+  color: rgba(255, 255, 255, 1);
+}
+/* controlliamo il colore delle svg inserite come img con opacity */
+a img {
+  opacity: 0.8;
+}
+a:hover img,
+a:active img,
+a:focus img { 
+  opacity: 1;
+}
+a.btn {
+  display: inline-block;
+  padding: 10px 40px;
+  border: 1px solid white;
+  border-radius: 50px;
+  font-size: 12px;
+  line-height: 20px;
+  color: white;
+  text-transform: uppercase;
+}
+a.btn:hover,
+a.btn:active,
+a.btn:focus {
+  transform: scale(1.1);
+}
+
+p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+.menu-list {
+  list-style: none;
+  font-size: 13px;
+  line-height: 35px;
+}
+
+.menu-inline li{
+  display: inline-block;
+  margin: 10px;
+}
+
+/* creiamo un wrapper che ha la larghezza della viewport,
+ricordiamo che in larghezza se usiamo vw e abbiamo delle scrollbar verticali comparirà la scrollbar orizzontale*/
+#wrapper {
+  width: 100%; 
+  height: 100vh;
+  background: black;
+}
+
+/* MAIN */
+/* il main racchiude anche la navbar, usiamo calc in questo modo la navbar rimarrà sempre fissa in basso */
+main {
+  height: calc(100% - 90px);
+  /* nascondiamo il contenuto in eccesso di main per consentire al footer di coprire la nav in altezze inferiori a 480px */
+  overflow: hidden;
+}
+main:after {
+  content: '';
   display: table;
   clear: both;
 }
 
-.float-lt {
+/* MAIN NAV */
+/* per il layout delle macroaree usiamo float e calc */
+main nav.main-nav {
   float: left;
+  width: 230px;
+  height: 100%;
+  min-height: 480px;
+}
+@media screen and (max-width: 600px) {
+  main nav.main-nav {
+    width: 50px;
+  }
+}
+main nav.main-nav .nav-top {
+  /* usiamo flex per far calcolare in automatico le altezze */
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 80px);
+  /* overflow ancora una volta ci consente di far sparire il testo in eccesso */
+  overflow-y: hidden;
+}
+main nav.main-nav .nav-top .nav-logo {
+  padding: 20px;
+}
+main nav.main-nav .nav-top .nav-logo img {
+  width: 70%;
+}
+main nav.main-nav .nav-top .nav-logo-mobile {
+  display: none;
+  text-align: center;
+  padding: 5px;
+}
+main nav.main-nav .nav-top .nav-logo-mobile img{
+  width: 70%;
+}
+@media screen and (max-width: 600px) {
+  main nav.main-nav .nav-top .nav-logo {
+    display: none;
+  }
+  main nav.main-nav .nav-top .nav-logo-mobile {
+    display: block;
+  }
+}
+main nav.main-nav .nav-top .nav-main-menu .menu-list li {
+  /* 17px + 3px di bordo = 20px di padding di playlist*/
+  padding-left: 17px;
+  border-left: 3px solid transparent;
+}
+main nav.main-nav .nav-top .nav-main-menu .menu-list li.active {
+  border-left: 3px solid greenyellow;
+}
+main nav.main-nav .nav-top .nav-main-menu .menu-list li.active a{
+  color: white;
+}
+/* usiamo lineheight e vertical align per centrare le immagini */
+main nav.main-nav .nav-top .nav-main-menu .menu-list img {
+  height: 26px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+@media screen and (max-width: 600px) {
+  main nav.main-nav .nav-top .nav-main-menu .menu-list {
+    text-align: center;
+  }
+  main nav.main-nav .nav-top .nav-main-menu .menu-list li {
+    border: 0;
+    padding-left: 0;
+  }
+  main nav.main-nav .nav-top .nav-main-menu .menu-list li a span {
+    display: none;
+  }
+  main nav.main-nav .nav-top .nav-main-menu .menu-list li.active {
+    border: 0;
+  }
+  main nav.main-nav .nav-top .nav-main-menu .menu-list img {
+    margin: 0;
+  }
+}
+main nav.main-nav .nav-top .nav-playlist {
+  padding: 20px;
+  overflow: hidden;
+}
+@media screen and (max-width: 600px) {
+  main nav.main-nav .nav-top .nav-playlist {
+    display: none;
+  }
+}
+main nav.main-nav .nav-top .nav-playlist .menu-list{
+  /* la playlist si rimpicciolisce poi compare una scrollbar */
+  height: 80%;
+  overflow-y: auto;
+}
+main nav.main-nav .nav-top .nav-playlist h2 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+main nav.main-nav .nav-top .nav-playlist .add-playlist {
+  margin-bottom: 10px;
+  display: block;
+  font-size: 15px;
+  line-height: 37px;
+}
+main nav.main-nav .nav-top .nav-playlist .add-playlist span:before {
+  display: inline-block;
+  content: '+';
+  width: 37px;
+  height: 37px;
+  margin-right: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  font-size: 35px;
+  text-align: center;
+  line-height: 37px;
+  vertical-align: middle;
+  color: black;
+}
+main nav.main-nav .nav-top .nav-playlist .add-playlist:hover span:before {
+  background-color: rgba(255, 255, 255, 1);
 }
 
-/* MARGIN*/
-.margin-lt-10 {
+/* usiamo flex per centrare in altezza */
+main nav.main-nav .nav-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 80px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+/* usiamo flex per centrare in altezza */
+main nav.main-nav .nav-bottom .app-download a,
+main nav.main-nav .nav-bottom .user {
+  display: flex;
+  align-items: center;
+}
+main nav.main-nav .nav-bottom .app-download {
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+main nav.main-nav .nav-bottom .app-download a {
+  font-size: 13px;
+}
+main nav.main-nav .nav-bottom .app-download img {
+  width: 15px;
+  margin-right: 10px;
+}
+@media screen and (max-width: 600px) {
+  main nav.main-nav .nav-bottom {
+    padding: 0;
+    align-items: center;
+  }
+  main nav.main-nav .nav-bottom .app-download {
+    text-align: center;
+    border: 0;
+    padding: 0;
+  }
+  main nav.main-nav .nav-bottom .app-download span{
+    display: none;
+  }
+  main nav.main-nav .nav-bottom .app-download img {
+    margin: 0;
+  }
+}
+main nav.main-nav .nav-bottom .user .user-avatar {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  background: grey;
+  border-radius: 50%;
+  overflow: hidden;
+}
+main nav.main-nav .nav-bottom .user .user-avatar img{
+  width: 100%;
+}
+main nav.main-nav .nav-bottom .user .user-name {
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+}
+@media screen and (max-width: 600px) {
+  main nav.main-nav .nav-bottom .user .user-avatar {
+    margin-right: 0;
+  }
+  main nav.main-nav .nav-bottom .user .user-name {
+    display: none;
+  }
+}
+
+
+/* MAIN CONTENT */
+/* per il layout delle macroaree usiamo float e calc */
+main #content {
+  float: left;
+  width: calc(100% - 230px);
+  height: 100%;
+  /* con overflow il testo non può uscire dal container e facciamo comparire la scrollbar solo quando serve */
+  overflow-y: auto;
+  /* nascondiamo la scroll laterale per nascondere gli album in eccesso */
+  overflow-x: hidden;
+  background: #141922;
+}
+@media screen and (max-width: 600px) {
+  main #content {
+    width: calc(100% - 50px);
+  }
+}
+
+/* call to action */
+main #content .call-to-action {
+  /* ricordiamo che il fixed si posiziona sempre rispetto alla viewport */
+  position: fixed;
+  z-index: 1;
+  width: calc(100% - 230px);
+  height: 90px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+  main #content .call-to-action {
+    width: calc(100% - 50px);
+  }
+}
+
+/* nav  */
+main #content .main-content-nav {
+  width: 100%;
+  margin-top: 90px;
+  text-align: center;
+}
+main #content .main-content-nav a {
+  position: relative;
+  padding-bottom: 5px;
+}
+main #content .main-content-nav a.active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  content: '';
+  display: block;
+  height: 2px;
+  width: 30px;
+  background: greenyellow;
+}
+
+/* covers */
+main #content .covers .covers-row > p{ 
+  margin-top: 10px;
+}
+main #content .covers .covers-row {
+  margin: 20px;
+}
+/* usiamo display flex per gestire le cover */
+main #content .covers .covers-list {
+  display: flex;
+  margin: 30px 0;
+}
+/* gestiamo le grandezze con calc e mediaquery */
+main #content .covers .covers-list .cover-item {
+  flex-shrink: 0;
+  width: calc(100% / 6 - 15px);
+  margin-right: 15px;
+  cursor: pointer;
+}
+@media screen and (max-width: 1100px) {
+  main #content .covers .covers-list .cover-item {
+    width: calc(100% / 4 - 10px);
+    margin-right: 10px;
+  }
+  /* inizialmente facciamo scivolare gli elementi sotto con wrap */
+  main #content .covers .covers-list {
+    flex-wrap: wrap;
+  }
+
+}
+@media screen and (max-width: 700px) {
+  main #content .covers .covers-list .cover-item {
+    width: calc(100% / 2 - 10px);
+    margin-right: 10px;
+  }
+
+}
+main #content .covers .covers-list .cover-item .cover-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+main #content .covers .covers-list .cover-item .cover-container .cover-layover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* allineo icona con flex */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 60px;
+}
+main #content .covers .covers-list .cover-item .cover-container .cover-layover i{
+  display: none;
+}
+main #content .covers .covers-list .cover-item:hover .cover-container .cover-layover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+main #content .covers .covers-list .cover-item:hover .cover-container .cover-layover i {
+  display: inline;
+}
+main #content .covers .covers-list .cover-item .cover-text{
+ text-align: center;
+}
+main #content .covers .covers-list .cover-item .cover-text h3{
+ font-size: 16px;
+ line-height: 16px;
+}
+main #content .covers .covers-list .cover-item .cover-container img{
+  max-width: 100%;
+}
+main #content .covers #popular .cover-item .cover-container img{
+  border-radius: 100%;
+}
+main #content .covers #popular .cover-item .cover-container {
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+/* FOOTER */
+/* footer ha un'altezza fissa */
+/* questa sezione è tutta in flex */
+footer {
+  height: 90px;
+  background: #282828;
+}
+footer #player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* player album */
+footer #player .player-album, 
+footer #player .player-audio {
+  width: 230px;
+  height: 100%;
+  padding: 10px;
+}
+footer #player .player-album {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+footer #player .player-album .player-album-cover {
+  width: 20%;
+}
+footer #player .player-album .player-album-cover img {
+  width: 100%;
+}
+footer #player .player-album .player-album-title {
+  width: 50%;
+  padding-left: 10px;
+}
+footer #player .player-album .player-album-title a:hover {
+  text-decoration: underline;
+  color: rgba(255, 255, 255, 1);
+}
+footer #player .player-album .player-album-title h2 {
+  font-size: 12px;
+  line-height: 12px;
+}
+footer #player .player-album .player-album-title h2 a{
+  color: rgba(255, 255, 255, 1);
+}
+footer #player .player-album .player-album-title p {
+  font-size: 10px;
+}
+footer #player .player-album .player-icons i{
   margin-left: 10px;
 }
 
-.margin-rg-20 {
-  margin-right: 20px;
-}
-
-.margin-lt-25{
-  margin-left: 25px;
-}
-/* /MARGIN */
-
-/* COLOR */
-.text_grey{
-  color:#515151
-}
-/* /COLOR */
-
-
-/* NAVBAR LATERALE */
-.nav_laterale {
-  width: 230px;
-  height: calc(100vh - 90px);
-  background-color: black;
-  overflow: hidden;
-}
-
-/* NAVBAR LATERALE LOGO */
-.nav_laterale .nav_laterale-top .nav-logo,
-.nav_laterale .nav_laterale-top .nav-logo-mobile {
-  width: 100%;
-  padding: 20px;
-}
-.nav_laterale-top {
-  height: calc(100% - 80px);
-  min-height: 400px;
-  overflow: hidden;
-}
-.nav_laterale-top .nav-logo-mobile {
-  display: none;
-}
-/* /NAVBAR LATERALE LOGO */
-
-/* NAVBAR LATERALE LISTA HOME */
-.list_top ul li {
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  color: #515151;
-  padding: 5px 20px;
-}
-
-.list_top ul li a {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.list_top ul li a:hover {
-  color: #fff;
-}
-
-.list_top img {
-  height: 26px;
-}
-/* /NAVBAR LATERALE LISTA HOME */
-
-/* PLAYLIST */
-.playlist {
-  height: 60%;
-  overflow: hidden;
-}
-/* /PLAYLIST */
-/* TITOLO + CREA PLAYLIST */
-.titolo_playlist {
-  width: 100%;
-  padding: 5px 20px;
-  color: #fff;
-}
-
-.titolo_playlist h5:nth-child(2) {
-  margin-top: 10px;
-  color: #515151;
-}
-.titolo_playlist h5:nth-child(2):hover {
-  color: #fff;
-  cursor: pointer;
-}
-
-.titolo_playlist h5:nth-child(2)::before {
-  content: "+";
-  font-size: 30px;
-  font-weight: 500;
-  color: black;
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  background-color: gray;
-  vertical-align: middle;
-  line-height: 40px;
-  text-align: center;
-  margin-right: 16px;
-  cursor: pointer;
-}
-
-.titolo_playlist h5:nth-child(2):hover::before {
-  background-color: #fff;
-}
-/* /TITOLO + CREA PLAYLIST */
-
-/* NAVBAR LATERALE CREA PLAYLIST */
-.crea_playlist {
-  padding: 5px 20px;
-  height: 50%;
-  overflow-y: auto;
-}
-.crea_playlist ul {
-  list-style: none;
-}
-.crea_playlist ul li {
-  color: #515151;
-  cursor: pointer;
-  margin-bottom: 10px;
-  font-size: 12px;
-  font-weight: 600;
-}
-.crea_playlist ul li:hover {
-  color: #fff;
-}
-/* /NAVBAR LATERALE CREA PLAYLIST */
-
-/* NAVBAR LATERALE NAV-BOTTOM */
-.nav_laterale-bottom {
-  width: 100%;
-  height: 80px;
-  padding: 5px 20px;
-  color: #515151;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.nav_laterale-bottom .installa_app {
-  border-bottom: 1px solid gray;
-  padding: 10px 0px;
-}
-
-.nav_laterale-bottom .installa_app i:hover {
-  color: #fff;
-  cursor: pointer;
-}
-
-.nav_laterale-bottom .installa_app span:hover {
-  color: #fff;
-  cursor: pointer;
-}
-
-.nav_laterale-bottom i {
-  margin-right: 5px;
-}
-
-.nav_laterale-bottom .nome_utente {
-  margin-top: 10px;
-  display: flex;
-}
-
-.nav_laterale-bottom .nome_utente .immagine_profilo {
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  border-radius: 50%;
-  background-color: #515151;
-  overflow: hidden;
-  margin-right: 10px;
-}
-
-.nav_laterale-bottom .nome_utente .immagine_profilo img {
-  width: 100%;
-  margin-right: 10px;
-}
-
-.nav_laterale-bottom .nome_utente span {
-  line-height: 24px;
-  color: #fff;
-  font-weight: 700;
-}
-.nav_laterale-bottom .nome_utente img,
-span {
-  cursor: pointer;
-}
-/* /NAVBAR LATERALE NAV-BOTTOM */
-
-/* MAIN */
-/* contenitore del main */
-
-.content {
-  width: calc(100% - 230px);
-  height: calc(100vh - 90px);
-  background-color: #141922;
-  overflow-y: auto;
-}
-/* TOP MAIN FIXATO */
-.top-main {
-  position: fixed;
-  width: calc(100% - 230px);
-  height: 90px;
-  display: flex;
-  justify-content: flex-end;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-.top-main button {
-  margin-right: 20px;
-  height: 50%;
-  background: none;
-  border: 1px solid white;
-  color: #fff;
-  padding: 0 20px;
-  border-radius: 50px;
-  margin-top: 22px;
-  cursor: pointer;
-}
-button:hover {
-  font-size: 16px;
-}
-/* /TOP MAIN FIXATO */
-
-/* SELEZIONE */
-.selezione_tipo {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 10px;
-  margin-top: 90px;
-}
-.content .selezione_tipo ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.content .selezione_tipo ul li {
-  position: relative;
-  padding: 10px;
-}
-.content .selezione_tipo ul li a {
-  text-decoration: none;
-  color: #76797e;
-}
-.linea-verde {
-  position: absolute;
-  bottom: 6px;
-  left: calc(50% - 25px);
-  height: 2px;
-  width: 50px;
-  background-color: #adff2f;
-  display: none;
-}
-.content .selezione_tipo ul li:hover a {
-  color: #fff;
-}
-.content .selezione_tipo ul li:active .linea-verde {
-  display: block;
-}
-/* /SELEZIONE */
-
-/* RECENTLY PLAYED */
-.contenitore_musica{
-  margin-bottom: 30px;
-}
-.row:first-child{
-  margin-bottom: 150px;
-}
-
-.row:nth-child(2){
-  margin-bottom: 50px;
-}
-
-.row.rotonda{
-  margin-bottom: 50px;
-}
-.row ul{
-  display: flex;
-  list-style: none;
-  flex-wrap: ;
-}
-.row ul li{
-  width:calc(100% / 6);
-  max-width: 180px;
-  min-width: 100px;
-  padding: 10px;
-  text-align: center;
-}
-
-.row  h4{
-  margin-top: 10px;
-  color: #fff;
-  text-align: center;
-}
-
-.row h3{
-  margin-left: 25px;
-  margin-bottom: 30px;
-  color: #fff;
-}
-
-/* .row  p{
-  margin-left: 25px;
-  color: #515151
-} */
-.row .contenitore_img p{
-  margin-top: 10px;
-  color: #515151
-}
-.contenitore_img{
-  width: 150px;
-  height: 150px;
-  margin-left: 15px;
-}
-
-.contenitore_img img{
-  width: 100%;
+/* player controller */
+footer #player .player-controller {
+  width: 40%;
   height: 100%;
 }
 
-
-
-
-.rotonda ul li img{
-  border-radius: 50%;
+/* player controller icons */
+footer #player .player-controller .player-controller-icons {
+  height: 60%;
 }
-
-
-/* /RECENTLY PLAYED */
-/* FOOTER */
-footer {
+footer #player .player-controller .player-controller-icons ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+footer #player .player-controller .player-controller-icons i{
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+footer #player .player-controller .player-controller-icons .player-controller-play-ico i{
+  width: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+footer #player .player-controller .player-controller-icons .player-controller-play-ico:hover i{
+  font-size: 32px;
+}
+/* player controller time*/
+footer #player .player-controller .player-controller-time {
   display: flex;
   justify-content: space-between;
-  height: 90px;
-  background-color: #282828;
-}
-.footer-left,
-.footer-right,
-.footer-center {
-  display: flex;
-}
-
-.footer-left,
-.footer-right {
-  /*  width: 230px; */
-  min-width: 170px;
-  justify-content: space-evenly;
   align-items: center;
-  flex-direction: row;
-  flex-shrink: 1;
-}
-/* FOOTER LEFT */
-footer .footer-left .titolo-brano {
-  display: flex;
-  align-items: center;
-  color: #fff;
-}
-.icon img {
-  width: 75%;
-  object-fit: cover;
-}
-.min_album {
-  width: 61px;
-  margin: 0 5px;
-}
-/* /FOOTER LEFT */
-/* FOOTER CENTER */
-footer .footer-center {
-  width: calc(100% / 3);
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 2;
-}
-footer .footer-center .contenitore_musica {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
 }
-
-footer .footer-center .contenitore_musica span {
+footer #player .player-controller .player-controller-time .player-controller-time-min {
+  width: 10%;
+  margin: 0 10px;
   font-size: 10px;
-  color: #c1c1c1;
+  text-align: center;
 }
 
-footer .linea_tempo {
+/* bar riutilizzata anche in audio*/
+footer #player .player-bar {
   width: 80%;
-  background-color: #5a5a5a;
-  border-radius: 20px;
   height: 4px;
-  margin: 0 15px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer;
 }
-
-footer .linea_tempo .tempo_avanti {
-  width: 25%;
-  border: 2px solid #c1c1c1;
-  border-radius: 20px;
-  cursor: pointer;
-  flex-wrap: nowrap;
+footer #player .player-bar .controller-elapsed {
+  position: relative;
+  height: 100%;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.6);
 }
-/* /FOOTER CENTER */
-
-/* FOOTER RIGHT */
-footer .footer-right .linea_tempo {
-  width: 84px;
-  background-color: #5a5a5a;
-  border-radius: 20px;
-  height: 4px;
-  margin: 0 15px;
-  cursor: pointer;
+footer #player .player-bar .controller-elapsed.perc-20 {
+  width: 20%;
+}
+footer #player .player-bar:hover .controller-elapsed {
+  background-color: greenyellow;
+}
+footer #player .player-bar:hover .controller-elapsed .controller-elapsed-point {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 1);
+  
 }
 
-footer .footer-right .linea_tempo .tempo_avanti {
-  width: 25px;
-  border: 2px solid #c1c1c1;
-  border-radius: 20px;
-  cursor: pointer;
-  flex-wrap: nowrap;
-}
-/* FOOTER RIGHT */
-
-/* FOOTER REGOLE ICON */
-footer .footer-left .icon,
-footer .footer-center .icon,
-footer .footer-right .icon {
+/* audio */
+footer #player .player-audio ul {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  color: #878787;
   height: 100%;
 }
-
-footer .footer-center .icon,
-footer .footer-right .icon {
-  margin-right: 10px;
-  color: #fff;
-}
-/* FOOTER REGOLE ICON */
-/* /FOOTER */
-/* MEDIA  Q */
-@media (max-width: 600px) {
-  main .nav_laterale .nav_laterale-top .nav-logo-mobile {
-    display: block;
-    padding: 5px 10px;
-    padding-right: 13px;
-  }
-  main .nav_laterale .nav_laterale-top .nav-logo {
-    display: none;
-  }
-  main .nav_laterale {
-    width: 50px;
-  }
-  main .content,
-  main .content .top-main {
-    width: calc(100% - 50px);
-  }
-  main .nav_laterale .list_top a {
-    display: none;
-  }
-  .list_top ul li {
-    padding: 5px 10px;
-  }
-
-  .crea_playlist,
-  .titolo_playlist {
-    display: none;
-  }
-  main .nav_laterale-bottom span {
-    display: none;
-  }
-  main .nav_laterale-bottom {
-    padding: 0;
-  }
-  .nav_laterale-bottom .installa_app {
-    margin: 0px 20px;
-    border-bottom: none;
-  }
-
-  .nav_laterale-bottom .nome_utente .immagine_profilo {
-    margin-left: 14px;
-  }
-
-  footer .footer-left .icon {
-    display: flex;
-    flex-direction: column;
-  }
+footer #player .player-audio .player-audio-volume {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
